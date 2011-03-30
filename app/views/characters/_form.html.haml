@@ -1,0 +1,8 @@
+- semantic_form_for @character do |form|
+  = form.inputs do
+    = form.input :name
+    = form.input :description
+    = form.input :long_description, :as => :text
+    = form.input :npc, :as => :boolean
+    = form.buttons do
+      = form.commit_button
