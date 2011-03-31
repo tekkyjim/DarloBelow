@@ -4,6 +4,7 @@ class Character
   field :description, :type => String
   field :long_description, :type => String
   field :npc, :type => Boolean, :default => false
+  field :adjectives
   validates_presence_of :name
   referenced_in :user
 end

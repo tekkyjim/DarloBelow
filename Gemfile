@@ -12,6 +12,8 @@ gem 'haml'
 gem 'haml-rails'
 gem 'formtastic'
 gem 'cancan'
+gem 'rdiscount'
+gem 'web-app-theme'
 # Use unicorn as the web server
 # gem 'unicorn'
 
