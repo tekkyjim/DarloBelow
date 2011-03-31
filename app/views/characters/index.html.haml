@@ -1,9 +1,10 @@
 %h1 Characters
 
-%table
+%table.table
   %tr
     %th Name
     %th Description
+    %th Player
     %th
     %th
     %th
@@ -13,18 +14,23 @@
       %tr
         %td= character.name
         %td= character.description
+        -if character.user != nil
+          %td= character.user.name
+        -else
+          %td Not Assigned
         %td= link_to 'Show', character
-        -if can? :edit, @character
+        -if can? :edit, character
           %td= link_to 'Edit', edit_character_path(character)
-        -if can? :destroy, @character
+        -if can? :destroy, character
           %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
-
-%br
-%h1 NPCs
-%table
+  %tr
+    %td
+      %h1 NPCs
+    %td
   %tr
     %th Name
     %th Description
+    %th Player
     %th
     %th
     %th
@@ -34,10 +40,14 @@
       %tr
       %td= character.name
       %td= character.description
+      -if character.user != nil
+        %td= character.user.name
+      -else
+        %td Not Assigned
       %td= link_to 'Show', character
-      -if can? :edit, @character
+      -if can? :edit, character
         %td= link_to 'Edit', edit_character_path(character)
-      -if can? :destroy, @character
+      -if can? :destroy, character
         %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
 
 %br
