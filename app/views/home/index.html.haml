@@ -3,3 +3,24 @@ Welcome to DarloBelow, this is just a shell of a site right now, so please hang 
 
 %p
   =current_user.characters.excludes(:npc => true).last.faction.greeting
+
+
+#block-text.block
+  .content
+    %h2.title hello
+    .inner
+      %p.first
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        = succeed "," do
+          %span.hightlight Excepteur sint occaecat cupidatat non proident
+        sunt in culpa qui officia deserunt mollit anim id est laborum.
+      %p
+        %span.small Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+      %p
+        %span.gray Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+      %hr/
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        = succeed "," do
+          %span.hightlight Excepteur sint occaecat cupidatat non proident
+        sunt in culpa qui officia deserunt mollit anim id est laborum.

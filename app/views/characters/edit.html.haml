@@ -1,7 +1,9 @@
-%h1 Editing character
+%div.content
+  %h2.title Editing character
+  %div.inner
 
-= render 'form'
+    = render 'form'
 
-= link_to 'Show', @character
-\|
-= link_to 'Back', characters_path
+    = link_to 'Show', @character
+    \|
+    = link_to 'Back', characters_path

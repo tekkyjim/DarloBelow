@@ -17,6 +17,10 @@
                 %li
                   %a
                     =link_to 'Your Characters', characters_path,:class => 'logout'
+                    -if current_user.role == "admin"
+                      %li
+                        %a
+                          =link_to 'Factions', factions_path,:class => 'logout'
               - if user_signed_in?
                 %li
                   %a

@@ -1,62 +1,60 @@
-%h1 Characters
-
-%table.table
-  %tr
-    %th Name
-    %th Description
-    %th Player
-    %th Faction
-    %th
-    %th
-    %th
-
-  - @characters.each do |character|
-    - unless character.npc?
-      %tr
-        %td= character.name
-        %td= character.description
-        -if character.user != nil
-          %td= character.user.name
-        -else
-          %td Not Assigned
-        %td= character.faction.name
-        %td= link_to 'Show', character
-        -if can? :edit, character
-          %td= link_to 'Edit', edit_character_path(character)
-        -if can? :destroy, character
-          %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
-  %tr
-    %td
-      %h1 NPCs
-    %td
-  %tr
-    %th Name
-    %th Description
-    %th Player
-    %th Faction
-    %th
-    %th
-    %th
-
-  -@characters.each do  |character|
-    -unless character.npc == false
-      -if character.faction.name == "Clergy"
-        -tagcolor = "red"
-      -if character.faction.name == "Crown"
-        -tagcolor = "blue"
-      %tr{:class => tagcolor}
-        %td= character.name
-        %td= character.description
-        -if character.user != nil
-          %td= character.user.name
-        -else
-          %td Not Assigned
-        %td= character.faction.name
-        %td= link_to 'Show', character
-        -if can? :edit, character
-          %td= link_to 'Edit', edit_character_path(character)
-        -if can? :destroy, character
-          %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
+%div.block
+  %div.content
+    %div.inner
+      %h2.title Characters
+      %table.table
+        %tr
+          %th Name
+          %th Description
+          %th Player
+          %th Faction
+          %th
+          %th
+        - @characters.each do |character|
+          - unless character.npc?
+            %tr
+              %td= link_to character.name, character
+              %td= character.description
+              -if character.user != nil
+                %td= character.user.name
+              -else
+                %td Not Assigned
+              %td= character.faction.name
+              -if can? :edit, character
+                %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
+              -if can? :destroy, character
+                %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
+- if current_user.role =! "player" || current_user.characters.excludes(:npc => false).count >= 1
+  %div.block
+    %div.content
+      %div.inner
+        %h2.title NPCs
+        %table.table
+          %tr
+            %th Name
+            %th Description
+            %th Player
+            %th Faction
+            %th
+            %th
+          -@characters.each do  |character|
+            -unless character.npc == false
+              -if character.faction.name == "Clergy"
+                -tag_color = "red"
+              -if character.faction.name == "Crown"
+                -tag_color = "blue"
+              %tr{:class => tag_color}
+                %td= link_to character.name, character
+                %td= character.description
+                -if character.user != nil
+                  %td= character.user.name
+                -else
+                  %td Not Assigned
+                %td= character.faction.name
+                -if can? :edit, character
+                  %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
+                -if can? :destroy, character
+                  %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
