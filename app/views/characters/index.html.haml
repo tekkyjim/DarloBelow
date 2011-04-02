@@ -12,18 +12,19 @@
           %th
         - @characters.each do |character|
           - unless character.npc?
-            %tr
-              %td= link_to character.name, character
-              %td= character.description
-              -if character.user != nil
-                %td= character.user.name
-              -else
-                %td Not Assigned
-              %td= character.faction.name
-              -if can? :edit, character
-                %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
-              -if can? :destroy, character
-                %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
+            -if can? :edit, character
+              %tr
+                %td= link_to character.name, character
+                %td= character.description
+                -if character.user != nil
+                  %td= character.user.name
+                -else
+                  %td Not Assigned
+                %td= character.faction.name
+                -if can? :edit, character
+                  %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
+                -if can? :destroy, character
+                  %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
 - if current_user.role =! "player" || current_user.characters.excludes(:npc => false).count >= 1
   %div.block
     %div.content
@@ -39,22 +40,23 @@
             %th
           -@characters.each do  |character|
             -unless character.npc == false
-              -if character.faction.name == "Clergy"
-                -tag_color = "red"
-              -if character.faction.name == "Crown"
-                -tag_color = "blue"
-              %tr{:class => tag_color}
-                %td= link_to character.name, character
-                %td= character.description
-                -if character.user != nil
-                  %td= character.user.name
-                -else
-                  %td Not Assigned
-                %td= character.faction.name
-                -if can? :edit, character
-                  %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
-                -if can? :destroy, character
-                  %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
+              -if can? :read, character
+                -if character.faction.name == "Clergy"
+                  -tag_color = "red"
+                -if character.faction.name == "Crown"
+                  -tag_color = "blue"
+                %tr{:class => tag_color}
+                  %td= link_to character.name, character
+                  %td= character.description
+                  -if character.user != nil
+                    %td= character.user.name
+                  -else
+                    %td Not Assigned
+                  %td= character.faction.name
+                  -if can? :edit, character
+                    %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
+                  -if can? :destroy, character
+                    %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
