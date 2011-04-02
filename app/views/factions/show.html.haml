@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @faction.name
+%p
+  %b Description:
+  = @faction.description
+%p
+  %b Greeting:
+  = @faction.greeting
+
+= link_to 'Edit', edit_faction_path(@faction)
+\|
+= link_to 'Back', factions_path

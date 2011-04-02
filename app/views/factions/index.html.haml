@@ -1,0 +1,23 @@
+%h1 Listing factions
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Greeting
+    %th
+    %th
+    %th
+
+  - @factions.each do |faction|
+    %tr
+      %td= faction.name
+      %td= faction.description
+      %td= faction.greeting
+      %td= link_to 'Show', faction
+      %td= link_to 'Edit', edit_faction_path(faction)
+      %td= link_to 'Destroy', faction, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Faction', new_faction_path

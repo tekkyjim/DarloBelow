@@ -1,12 +1,14 @@
-- semantic_form_for @character do |form|
+= semantic_form_for @character do |form|
   = form.inputs do
     = form.input :name, :hint => " The characters name"
     = form.input :description, :hint => "A brief description"
     = form.input :long_description, :as => :text, :hint => "A much more in-depth description of your character, including history"
     = form.input :adjectives, :as => :string, :hint => "The characters adjectives"
+    = form.input :faction_id, :collection => Faction.asc(:name), :label => "Faction", :include_blank => false
+
     - if current_user.role? :admin
       = form.input :npc, :as => :boolean
-      = form.input :user_id, :as => :select, :collection => User.find(:all), :label => "Player"
+      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player", :include_blank => false
     - else
       = form.input :npc, :as => :hidden, :value => false
       - if action_name == "new"

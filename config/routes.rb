@@ -1,5 +1,7 @@
 Darlo::Application.routes.draw do
 
+  resources :factions
+
   resources :characters
 
   root :to => "home#index"

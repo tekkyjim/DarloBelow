@@ -7,4 +7,5 @@ class Character
   field :adjectives
   validates_presence_of :name
   referenced_in :user
+  referenced_in :faction
 end

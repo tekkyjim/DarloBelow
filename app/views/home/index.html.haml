@@ -1,2 +1,5 @@
 %h3 Home
-Welcome to DarloBelow, this is just a shell of a site right now, so please bear with us.
+Welcome to DarloBelow, this is just a shell of a site right now, so please hang on.
+
+%p
+  =current_user.characters.excludes(:npc => true).last.faction.greeting

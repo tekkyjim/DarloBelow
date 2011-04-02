@@ -1,0 +1,19 @@
+= form_for @faction do |f|
+  -if @faction.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@faction.errors.count, "error")} prohibited this faction from being saved:"
+      %ul
+        - @faction.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :greeting
+    = f.text_field :greeting
+  .actions
+    = f.submit 'Save'

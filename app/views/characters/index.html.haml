@@ -5,6 +5,7 @@
     %th Name
     %th Description
     %th Player
+    %th Faction
     %th
     %th
     %th
@@ -18,6 +19,7 @@
           %td= character.user.name
         -else
           %td Not Assigned
+        %td= character.faction.name
         %td= link_to 'Show', character
         -if can? :edit, character
           %td= link_to 'Edit', edit_character_path(character)
@@ -31,26 +33,34 @@
     %th Name
     %th Description
     %th Player
+    %th Faction
     %th
     %th
     %th
 
-  - @characters.each do  |character|
-    - unless character.npc == false
-      %tr
-      %td= character.name
-      %td= character.description
-      -if character.user != nil
-        %td= character.user.name
-      -else
-        %td Not Assigned
-      %td= link_to 'Show', character
-      -if can? :edit, character
-        %td= link_to 'Edit', edit_character_path(character)
-      -if can? :destroy, character
-        %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
+  -@characters.each do  |character|
+    -unless character.npc == false
+      -if character.faction.name == "Clergy"
+        -tagcolor = "red"
+      -if character.faction.name == "Crown"
+        -tagcolor = "blue"
+      %tr{:class => tagcolor}
+        %td= character.name
+        %td= character.description
+        -if character.user != nil
+          %td= character.user.name
+        -else
+          %td Not Assigned
+        %td= character.faction.name
+        %td= link_to 'Show', character
+        -if can? :edit, character
+          %td= link_to 'Edit', edit_character_path(character)
+        -if can? :destroy, character
+          %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-
-= link_to 'New Character', new_character_path
+-if current_user.role == "player" and current_user.characters.excludes(:npc => true).count >= 1
+  %p You have enough characters!
+-else
+  =link_to 'New Character', new_character_path
