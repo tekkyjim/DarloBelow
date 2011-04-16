@@ -5,6 +5,8 @@ class Character
   field :long_description, :type => String
   field :npc, :type => Boolean, :default => false
   field :adjectives
+  field :gender
+  field :roleplay_hints
   validates_presence_of :name
   referenced_in :user
   referenced_in :faction
