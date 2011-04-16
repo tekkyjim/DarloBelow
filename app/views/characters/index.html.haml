@@ -25,7 +25,7 @@
                   %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
                 -if can? :destroy, character
                   %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => 'Are you sure?', :method => :delete
-- if current_user.role =! "player" || current_user.characters.excludes(:npc => false).count >= 1
+- if current_user.role != "player" || current_user.characters.excludes(:npc => false).count >= 1
   %div.block
     %div.content
       %div.inner
