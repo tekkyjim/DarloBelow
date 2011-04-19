@@ -1,14 +1,21 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @character.name
-%p
-  %b Description:
-  = @character.description
-%p
-  %b Long description:
-  = @character.long_description
+
+#block-text.block
+  .content
+    %h2.title #{@character.name}
+    .inner
+      %p.first
+        %span.gray #{@character.description}
+      %p
+        Gender: #{@character.gender}
+      -if can? :edit, @character
+        %p Adjectives:   #{@character.adjectives} (#{@character.adjectives.split(",").count})
+
+      %p
+        :markdown
+          #{@character.long_description}
+
 -if can? :edit, @character
   = link_to 'Edit', edit_character_path(@character)
   \|

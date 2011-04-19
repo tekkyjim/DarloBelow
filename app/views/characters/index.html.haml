@@ -36,12 +36,13 @@
             %th Description
             %th Player
             %th Faction
+            %th Adjectives
             %th
             %th
           -@characters.each do  |character|
             -unless character.npc == false
               -if can? :read, character
-                -if character.faction.name == "Clergy"
+                -if character.faction.name == "Clergy"  #TOFIX change this to a case or something.
                   -tag_color = "red"
                 -if character.faction.name == "Crown"
                   -tag_color = "blue"
@@ -53,6 +54,7 @@
                   -else
                     %td Not Assigned
                   %td= character.faction.name
+                  %td= character.adjectives.split(",").count
                   -if can? :edit, character
                     %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
                   -if can? :destroy, character

@@ -1,15 +1,15 @@
 = semantic_form_for @character do |form|
   = form.inputs do
     = form.input :name, :hint => " The characters name"
-    = form.input :gender, :collection => ["Male", "Female", "Other"], :include_blank => false
+    = form.input :gender, :collection => ["Male", "Female", "Other"]
     = form.input :description, :hint => "A brief description"
-    = form.input :long_description, :as => :text, :hint => "A much more in-depth description of the character", :input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
+    = form.input :long_description, :as => :text, :hint => ("A much more in-depth description of the character, please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe, :input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
     = form.input :adjectives, :as => :string, :hint => "The characters adjectives"
-    = form.input :faction_id, :collection => Faction.asc(:name), :label => "Faction", :include_blank => false
-    = form.input :roleplay_hints, :as => :text, :hint => "Advice and inspiration for roleplaying the character",:input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
+    = form.input :faction_id, :collection => Faction.asc(:name), :label => "Faction"
+    = form.input :roleplay_hints, :as => :text, :hint => ("Advice and inspiration for roleplaying the character, Please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe,:input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
     - if current_user.role? :admin
       = form.input :npc, :as => :boolean
-      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player", :include_blank => false
+      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player"
     - else
       = form.input :npc, :as => :hidden, :value => false
       - if action_name == "new"

@@ -24,7 +24,7 @@
 
 # Should select fields have a blank option/prompt by default?
 # Defaults to true.
-# Formtastic::SemanticFormBuilder.include_blank_for_select_by_default = true
+Formtastic::SemanticFormBuilder.include_blank_for_select_by_default = false
 
 # Set the string that will be appended to the labels/fieldsets which are required
 # It accepts string or procs and the default is a localized version of
@@ -73,7 +73,7 @@
 # Specifies if labels/hints for input fields automatically be looked up using I18n.
 # Default value: false. Overridden for specific fields by setting value to true,
 # i.e. :label => true, or :hint => true (or opposite depending on initialized value)
-# Formtastic::SemanticFormBuilder.i18n_lookups_by_default = false
+#Formtastic::SemanticFormBuilder.i18n_lookups_by_default = false
 
 # You can add custom inputs or override parts of Formtastic by subclassing SemanticFormBuilder and
 # specifying that class here.  Defaults to SemanticFormBuilder.
