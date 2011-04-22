@@ -2,7 +2,7 @@ class FactionsController < ApplicationController
   # GET /factions
   # GET /factions.xml
   def index
-    @factions = Faction.all
+    @factions = Faction.all.order_by([:name, :asc])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,8 +44,8 @@ class FactionsController < ApplicationController
 
     respond_to do |format|
       if @faction.save
-        format.html { redirect_to(@faction, :notice => 'Faction was successfully created.') }
-        format.xml  { render :xml => @faction, :status => :created, :location => @faction }
+        format.html { redirect_to(factions_url, :notice => 'Faction was successfully created.') }
+        format.xml  { render :xml => @factions, :status => :created, :location => @faction }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @faction.errors, :status => :unprocessable_entity }
@@ -60,7 +60,7 @@ class FactionsController < ApplicationController
 
     respond_to do |format|
       if @faction.update_attributes(params[:faction])
-        format.html { redirect_to(@faction, :notice => 'Faction was successfully updated.') }
+        format.html { redirect_to(factions_url, :notice => 'Faction was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

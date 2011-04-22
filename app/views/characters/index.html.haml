@@ -1,3 +1,4 @@
+- @page_title = "Characters"
 %div.block
   %div.content
     %div.inner
@@ -42,11 +43,7 @@
           -@characters.each do  |character|
             -unless character.npc == false
               -if can? :read, character
-                -if character.faction.name == "Clergy"  #TOFIX change this to a case or something.
-                  -tag_color = "red"
-                -if character.faction.name == "Crown"
-                  -tag_color = "blue"
-                %tr{:class => tag_color}
+                %tr{ :class=> character.faction.tagcolour.downcase }
                   %td= link_to character.name, character
                   %td= character.description
                   -if character.user != nil

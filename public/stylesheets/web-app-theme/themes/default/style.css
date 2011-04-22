@@ -461,10 +461,11 @@ a.button, button.button, .pagination a, .pagination span {
   border-radius: 4px;
 }
 
-.red {
-    color: #990000
-}
-.blue {
-    color: #003399
+.red {color: #ff0000}
+.orange{color: #ff8000}
+.yellow {color: #FFFF66}
+.green {color: #008000}
+.blue {color: #0000ff}
+.indigo{color: #4b0082}
+.violet{color: #BF5FFF}
 
-}

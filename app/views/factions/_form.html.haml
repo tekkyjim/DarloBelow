@@ -1,22 +1,11 @@
-= form_for @faction do |f|
-  -if @faction.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@faction.errors.count, "error")} prohibited this faction from being saved:"
-      %ul
-        - @faction.errors.full_messages.each do |msg|
-          %li= msg
+= semantic_form_for @faction do |form|
+  = form.inputs do
+    = form.input :name, :hint => " The faction name"
+    = form.input :tagcolour, :collection => ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"], :include_blank => true
+    = form.input :description, :hint => "A one line description of the faction"
+    = form.input :long_description, :as => :text, :hint => ("A much more in-depth description of the faction, please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe, :input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
+    = form.input :roleplay_hints, :as => :text, :hint => ("Advice and inspiration for roleplaying the faction, Please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe,:input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
+    = form.input :image, :collection => file_array("/public/images/", "*.png"), :include_blank => true
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :long_description
-    = f.text_area :long_description
-  .field
-    = f.label :greeting
-    = f.text_field :greeting
-  .actions
-    = f.submit 'Save'
+    = form.buttons do
+      = form.commit_button
