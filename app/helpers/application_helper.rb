@@ -8,4 +8,3 @@ module ApplicationHelper
     array.sort
   end
 end
- 
