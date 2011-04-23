@@ -11,7 +11,7 @@
       = form.input :npc, :as => :boolean
       = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player"
     - else
-      = form.input :npc, :as => :hidden, :value => false
+      = form.input :npc, :as => :hidden
       - if action_name == "new"
         = form.input :user_id, :as => :hidden, :value => current_user._id
     = form.buttons do
