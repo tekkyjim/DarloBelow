@@ -1,1 +1,7 @@
 /* Override here any style defined by web-app-theme */
+.counter {
+    text-align: right;
+    margin-right:5%;
+    font-weight: bold;
+    font:Helvetica;
+}
