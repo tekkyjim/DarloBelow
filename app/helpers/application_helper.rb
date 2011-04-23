@@ -5,6 +5,6 @@ module ApplicationHelper
       array << File.basename(file)
       puts array
     end
-    array
+    array.sort
   end
 end
