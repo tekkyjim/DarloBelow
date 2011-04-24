@@ -15,6 +15,11 @@
       %p
         :markdown
           #{@character.long_description}
+        -if can? :edit, @character
+          :markdown
+            **Roleplay Hints:**
+
+            #{@character.roleplay_hints}
 
 -if can? :edit, @character
   = link_to 'Edit', edit_character_path(@character)
