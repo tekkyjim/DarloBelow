@@ -1,3 +1,23 @@
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+- @page_title = "Users"
+%div.block
+  %div.content
+    %div.inner
+      %h2.title Users
+      %table.table
+        %tr
+          %th User
+          %th Email Address
+          %th Current Role
+          %th
+          %th
+          %th
+          %th
+        - @users.each do |user|
+          %tr
+            %td= link_to user.name, user
+            %td= user.email
+            %td= user.role
+            %td
+            %td= button_to "Make Player",:remote => true, :action => "change_role",:role => "player", :id => user.id, :method => :post
+            %td= button_to "Make Helper",:remote => true, :action => "change_role",:role => "helper", :id => user.id, :method => :post
+            %td= button_to "Make Admin",:remote => true, :action => "change_role", :role => "admin", :id => user.id, :method => :post
