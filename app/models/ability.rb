@@ -5,7 +5,12 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role? :admin
       can :manage, :all
-    else
+    end
+    if user.role? :helper
+      can :manage, Character, :npc => true
+      can :manage, Character, :user_id => user._id
+    end
+    if user.role? :player
       can :manage, Character, :user_id => user._id
     end
 
