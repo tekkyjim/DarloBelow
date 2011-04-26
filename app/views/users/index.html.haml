@@ -7,6 +7,7 @@
         %tr
           %th User
           %th Email Address
+          %th Last Online
           %th Current Role
           %th
           %th
@@ -16,7 +17,11 @@
           %tr
             %td= link_to user.name, user
             %td= user.email
-            %td= user.role
+            -unless user.last_request_at == nil
+              %td #{time_ago_in_words(user.last_request_at).humanize} ago
+              -else
+                %td Not updated
+            %td= user.role.humanize
             %td
             %td= button_to "Make Player",:remote => true, :action => "change_role",:role => "player", :id => user.id, :method => :post
             %td= button_to "Make Helper",:remote => true, :action => "change_role",:role => "helper", :id => user.id, :method => :post

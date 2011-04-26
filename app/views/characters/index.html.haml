@@ -9,6 +9,7 @@
           %th Description
           %th Player
           %th Faction
+          %th Last Updated
           %th
           %th
         - @characters.each do |character|
@@ -22,6 +23,10 @@
                 -else
                   %td Not Assigned
                 %td= character.faction.name
+                - unless character.updated_at == nil
+                  %td #{time_ago_in_words(character.updated_at.utc).humanize} ago
+                  -else
+                    %td blank
                 -if can? :edit, character
                   %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
                 -if can? :destroy, character
@@ -40,6 +45,7 @@
             %th Player
             %th Faction
             %th Adjectives
+            %th Last Updated
             %th
             %th
           -@characters.each do  |character|
@@ -54,6 +60,10 @@
                     %td Not Assigned
                   %td= character.faction.name
                   %td= character.adjectives.split(",").count
+                  - unless character.updated_at == nil
+                    %td #{time_ago_in_words(character.updated_at.utc).humanize} ago
+                    -else
+                      %td blank
                   -if can? :edit, character
                     %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
                   -if can? :destroy, character

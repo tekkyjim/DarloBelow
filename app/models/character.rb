@@ -2,6 +2,7 @@ class Character
   include Mongoid::Document
   include Mongoid::Paranoia
   include Mongoid::Versioning
+  include Mongoid::Timestamps
   field :name, :type => String
   field :description, :type => String
   field :long_description, :type => String
