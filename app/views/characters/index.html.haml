@@ -18,19 +18,11 @@
               %tr
                 %td= link_to character.name, character
                 %td= character.description
-                -if character.user != nil
-                  %td= character.user.name
-                -else
-                  %td Not Assigned
+                %td= character.user.name if character.user
                 %td= character.faction.name
-                - unless character.updated_at == nil
-                  %td #{time_ago_in_words(character.updated_at.utc).humanize} ago
-                  -else
-                    %td blank
-                -if can? :edit, character
-                  %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
-                -if can? :destroy, character
-                  %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => ('Are you sure you wish to delete ' + character.name+'?'), :method => :delete
+                %td= time_ago_in_words(character.updated_at.utc) if character.updated_at
+                %td= link_to "Edit", edit_character_path(character) if can? :edit, character
+                %td= link_to "Delete", character, :confirm => ('Are you sure you wish to delete ' + character.name+'?'), :method => :delete if can? :destroy, character
   -if current_user.role != "player"
     %div.counter   #{25 - @characters.excludes(:npc => true).count} character spaces remaining.
 -if current_user.role != "player" || current_user.characters.excludes(:npc => false).count >= 1
@@ -54,20 +46,12 @@
                 %tr{ :class=> character.faction.tagcolour.downcase }
                   %td= link_to character.name, character
                   %td= character.description
-                  -if character.user != nil
-                    %td= character.user.name
-                  -else
-                    %td Not Assigned
+                  %td= character.user.name if character.user
                   %td= character.faction.name
                   %td= character.adjectives.split(",").count
-                  - unless character.updated_at == nil
-                    %td #{time_ago_in_words(character.updated_at.utc).humanize} ago
-                    -else
-                      %td blank
-                  -if can? :edit, character
-                    %td= link_to image_tag("web-app-theme/icons/application_edit.png"), edit_character_path(character)
-                  -if can? :destroy, character
-                    %td= link_to image_tag("web-app-theme/icons/cross.png"), character, :confirm => ('Are you sure you wish to delete ' + character.name+'?'), :method => :delete
+                  %td= time_ago_in_words(character.updated_at.utc) if character.updated_at
+                  %td= link_to "Edit", edit_character_path(character) if can? :edit, character
+                  %td= link_to "Delete", character, :confirm => ('Are you sure you wish to delete ' + character.name+'?'), :method => :delete if can? :destroy, character
 
 %br
 
