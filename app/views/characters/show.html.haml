@@ -13,10 +13,10 @@
         %p Adjectives:   #{@character.adjectives} (#{@character.adjectives.split(",").count})
 
       %p
-        :markdown
+        :markdownsmart
           #{@character.long_description}
         -if can? :edit, @character
-          :markdown
+          :markdownsmart
             **Roleplay Hints:**
 
             #{@character.roleplay_hints}
