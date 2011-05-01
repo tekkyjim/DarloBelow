@@ -15,6 +15,10 @@ gem 'cancan'
 gem 'rdiscount'
 gem 'web-app-theme'
 gem 'jquery-rails'
+gem 'mongoid_taggable'
+gem 'irbtools'
+gem 'linguistics'
+
 # Use unicorn as the web server
 #gem 'unicorn'
 

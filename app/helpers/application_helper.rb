@@ -6,6 +6,19 @@ module ApplicationHelper
       puts array
     end
     array.sort
+    end
+    
+   def list_adjectives(type, bias)
+    words = []
+    unless type == "All"
+      list = Adjective.where(:type => type, :bias => bias)
+    else
+      list = Adjective.where(:bias => bias)
+    end
+    list.each do |beep|
+      words << beep.word
+    end
+    words
   end
 end
  

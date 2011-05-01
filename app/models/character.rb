@@ -3,15 +3,16 @@ class Character
   include Mongoid::Paranoia
   include Mongoid::Versioning
   include Mongoid::Timestamps
+  include Mongoid::Taggable
   field :name, :type => String
   field :description, :type => String
   field :long_description, :type => String
   field :npc, :type => Boolean, :default => false
-  field :adjectives
   field :gender
   field :roleplay_hints
   validates_presence_of :name
   referenced_in :user
   referenced_in :faction
   max_versions 5
+  field :max_adjectives, :type => Integer, :default => 5
 end

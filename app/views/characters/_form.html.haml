@@ -1,15 +1,38 @@
+:javascript
+  $(document).ready(function(){$(".adjectives").multiselect({
+    minWidth: 625,
+    selectedList: 10,
+    header: "Choose #{@character.max_adjectives.en.numwords} adjectives",
+      click: function(e){
+          if( $(this).multiselect("widget").find("input:checked").length > #{@character.max_adjectives} ){
+              warning.addClass("error").removeClass("success").html("You can only check checkboxes!");
+              return false;
+          } else {
+              $(this).multiselect("widget");
+              warning.addClass("success").removeClass("error").html("Check a few boxes.");
+          }
+      }
+    });
+   });
+
 = semantic_form_for @character do |form|
   = form.inputs do
     = form.input :name, :hint => " The characters name"
-    = form.input :gender, :collection => ["Male", "Female", "Other"]
+    = form.input :gender, :collection => ["Male", "Female", "Other"],:input_html => { :class => 'fancyselect'}
     = form.input :description, :hint => "A brief description"
     = form.input :long_description, :as => :text, :hint => ("A much more in-depth description of the character, please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe, :input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
-    = form.input :adjectives, :as => :string, :hint => "The characters adjectives"
-    = form.input :faction_id, :collection => Faction.asc(:name), :label => "Faction"
+    = form.input :tags_array, :as => :select, :collection => list_adjectives("All","Positive") , :hint => "The characters adjectives", :input_html => { :multiple => true , :class => 'adjectives', :wrapper_html => { :style => "width: 700px;" }}
+
+    -#@character.max_adjectives.times do |num|
+      %li
+        =#label_tag "Adjective #{(num+1).to_s}/#{@character.max_adjectives}"
+        =#select_tag "character[tags_array][]",  options_for_select(list_adjectives("All","Positive"){ |u| [u.name, u.id] })
+        Last setting: #{@character.tags_array[num] unless @character.tags_array.nil?}
+    = form.input :faction_id, :collection => Faction.asc(:name), :label => "Faction",:input_html => { :class => 'fancyselect'}
     = form.input :roleplay_hints, :as => :text, :hint => ("Advice and inspiration for roleplaying the character, Please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe,:input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
     - if current_user.role? :admin
       = form.input :npc, :as => :boolean
-      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player"
+      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player",:input_html => { :class => 'fancyselect'}
     - else
       = form.input :npc, :as => :hidden
       - if action_name == "new"

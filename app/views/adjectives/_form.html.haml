@@ -1,0 +1,8 @@
+= semantic_form_for @adjective do |form|
+  = form.inputs do
+    = form.input :word, :hint => " The actual word"
+    = form.input :type, :collection => ["Physical", "Psychological", "Persona"]
+    = form.input :bias, :collection => ["Positive", "Negative"]
+
+    = form.buttons do
+      = form.commit_button

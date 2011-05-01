@@ -1,5 +1,7 @@
 Darlo::Application.routes.draw do
 
+  resources :adjectives
+
   resources :factions
 
   resources :characters

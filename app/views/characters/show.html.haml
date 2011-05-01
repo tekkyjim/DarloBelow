@@ -10,7 +10,7 @@
       %p
         Gender: #{@character.gender}
       -if can? :edit, @character
-        %p Adjectives:   #{@character.adjectives} (#{@character.adjectives.split(",").count})
+        %p Adjectives:   #{@character.tags} (#{@character.tags_array.count})
 
       %p
         :markdownsmart
