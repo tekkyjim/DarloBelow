@@ -1,2 +1,2 @@
-require 'Linguistics'
-Linguistics::use( :en )
+#require 'Linguistics'
+#Linguistics::use( :en )
