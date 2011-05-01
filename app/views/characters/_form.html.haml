@@ -2,7 +2,7 @@
   $(document).ready(function(){$(".adjectives").multiselect({
     minWidth: 625,
     selectedList: 10,
-    header: "Choose #{@character.max_adjectives.en.numwords} adjectives",
+    header: "Choose #{@character.max_adjectives.to_s} adjectives",
       click: function(e){
           if( $(this).multiselect("widget").find("input:checked").length > #{@character.max_adjectives} ){
               warning.addClass("error").removeClass("success").html("You can only check checkboxes!");
