@@ -1,4 +1,5 @@
 class AdjectivesController < ApplicationController
+    before_filter :authenticate_user!
   # GET /adjectives
   # GET /adjectives.xml
   def index
