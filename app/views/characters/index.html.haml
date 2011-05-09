@@ -25,7 +25,10 @@
                 %td= link_to "Delete", character, :confirm => ('Are you sure you wish to delete ' + character.name+'?'), :method => :delete if can? :destroy, character
   -if current_user.role != "player"
     %div.counter   #{25 - @characters.excludes(:npc => true).count} character spaces remaining.
--if current_user.role != "player" || current_user.characters.excludes(:npc => false).count >= 1
+-@chrnames = []
+-@characters.each do |chr|
+  -@chrnames << chr.name
+-if current_user.role != "player" || @chrnames.include?(current_user.name)
   %div.block
     %div.content
       %div.inner
