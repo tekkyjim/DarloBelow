@@ -26,7 +26,9 @@
     = form.input :roleplay_hints, :as => :text, :hint => ("Advice and inspiration for roleplaying the character, Please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe,:input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
     - if current_user.role? :helper
       = form.input :npc, :as => :boolean
-      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player",:input_html => { :class => 'fancyselect'}
+      = form.input :played_by, :as => :select, :collection => list_users,:input_html => { :class => 'fancyselect'}
+
+      = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Owner",:input_html => { :class => 'fancyselect'}
     - else
       = form.input :npc, :as => :hidden
       - if action_name == "new"

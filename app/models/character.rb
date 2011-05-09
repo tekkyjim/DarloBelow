@@ -12,6 +12,7 @@ class Character
   field :gender
   field :roleplay_hints
   field :max_adjectives, :type => Integer, :default => 5
+  field :played_by, :default => "No one yet"
   validates_presence_of :name
   referenced_in :user
   referenced_in :faction

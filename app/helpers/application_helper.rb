@@ -19,6 +19,14 @@ module ApplicationHelper
       words << beep.word
     end
     words
+   end
+  def list_users
+    users = []
+    userlist = User.asc(:name)
+    userlist.each do |beep|
+      users << beep.name
+    end
+    users
   end
 end
  

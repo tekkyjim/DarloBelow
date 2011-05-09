@@ -12,7 +12,7 @@
       %p
         :markdownsmart
           #{@character.long_description}
-      -if can? :edit, @character
+      -if can? :read, @character
         %p Adjectives:
         %p
           -unless @character.tags_array.nil?
@@ -22,7 +22,7 @@
           **Roleplay Hints:**
 
           #{@character.roleplay_hints}
-
+      -if can? :read, @character
         = link_to 'Edit', edit_character_path(@character)
         \|
       = link_to 'Back', characters_path

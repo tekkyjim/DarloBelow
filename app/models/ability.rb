@@ -12,6 +12,7 @@ class Ability
     end
     if user.role? :player
       can :manage, Character, :user_id => user._id
+      can :read, Character, :played_by => user.name
     end
 
 

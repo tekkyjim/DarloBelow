@@ -34,8 +34,9 @@
           %tr
             %th Name
             %th Description
-            %th Player
             %th Faction
+            %th Played By
+            %th Owner
             %th Adjectives
             %th Last Updated
             %th
@@ -46,8 +47,9 @@
                 %tr{ :class=> character.faction.tagcolour.downcase }
                   %td= link_to character.name, character
                   %td= character.description
-                  %td= character.user.name if character.user
                   %td= character.faction.name
+                  %td= character.played_by
+                  %td= character.user.name if character.user
                   %td= character.tags_array.count unless character.tags_array.nil?
                   %td= time_ago_in_words(character.updated_at.utc) if character.updated_at
                   %td= link_to "Edit", edit_character_path(character) if can? :edit, character
