@@ -9,19 +9,20 @@
         %span.gray #{@character.description}
       %p
         Gender: #{@character.gender}
-      -if can? :edit, @character
-        %p Adjectives:   #{@character.tags} (#{@character.tags_array.count})
-
       %p
         :markdownsmart
           #{@character.long_description}
-        -if can? :edit, @character
-          :markdownsmart
-            **Roleplay Hints:**
+      -if can? :edit, @character
+        %p Adjectives:
+        %p
+          -unless @character.tags_array.nil?
+            =@character.tags
+            =@character.tags_array.count
+        :markdownsmart
+          **Roleplay Hints:**
 
-            #{@character.roleplay_hints}
+          #{@character.roleplay_hints}
 
--if can? :edit, @character
-  = link_to 'Edit', edit_character_path(@character)
-  \|
-= link_to 'Back', characters_path
+        = link_to 'Edit', edit_character_path(@character)
+        \|
+      = link_to 'Back', characters_path

@@ -21,16 +21,10 @@
     = form.input :gender, :collection => ["Male", "Female", "Other"],:input_html => { :class => 'fancyselect'}
     = form.input :description, :hint => "A brief description"
     = form.input :long_description, :as => :text, :hint => ("A much more in-depth description of the character, please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe, :input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
-    = form.input :tags_array, :as => :select, :collection => list_adjectives("All","Positive") , :hint => "The characters adjectives", :input_html => { :multiple => true , :class => 'adjectives', :wrapper_html => { :style => "width: 700px;" }}
-
-    -#@character.max_adjectives.times do |num|
-      %li
-        =#label_tag "Adjective #{(num+1).to_s}/#{@character.max_adjectives}"
-        =#select_tag "character[tags_array][]",  options_for_select(list_adjectives("All","Positive"){ |u| [u.name, u.id] })
-        Last setting: #{@character.tags_array[num] unless @character.tags_array.nil?}
+    = form.input :tags_array, :label => "Adjectives", :as => :select, :collection => list_adjectives("All","Positive") , :hint => "The characters adjectives", :input_html => { :multiple => true , :class => 'adjectives', :wrapper_html => { :style => "width: 700px;" }}
     = form.input :faction_id, :collection => Faction.asc(:name), :label => "Faction",:input_html => { :class => 'fancyselect'}
     = form.input :roleplay_hints, :as => :text, :hint => ("Advice and inspiration for roleplaying the character, Please use " + link_to("Markdown","http://daringfireball.net/projects/markdown/basics")).html_safe,:input_html => { :class => 'txtInput', :cols =>"120", :rows=>"2" }
-    - if current_user.role? :admin
+    - if current_user.role? :helper
       = form.input :npc, :as => :boolean
       = form.input :user_id, :as => :select, :collection => User.asc(:name), :label => "Player",:input_html => { :class => 'fancyselect'}
     - else
